@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) and Gemini CLI when 
 
 ## Project Overview
 
-This is the documentation repository for **Clash Verge Rev**, a cross-platform GUI client for Mihomo (Clash.Meta) built with Tauri. The documentation is built using **MkDocs Material** and is primarily written in **Chinese**.
+This is the documentation repository for **Clash Verge Rev**, a cross-platform GUI client for Mihomo (Clash.Meta) built with Tauri. The documentation is built using **ProperDocs + MaterialX** (a modern, high-performance community fork of MkDocs Material) and is primarily written in **Chinese**.
 
 The main application repository is at: https://github.com/clash-verge-rev/clash-verge-rev
 
@@ -12,21 +12,25 @@ The main application repository is at: https://github.com/clash-verge-rev/clash-
 
 ### Setup
 ```bash
-# Install Python dependencies
-pip install -r requirements.txt
+# Install Python dependencies using uv
+uv pip install -r requirements.txt
 ```
 
 ### Local Development
 ```bash
 # Start local development server
-# Listens on http://127.0.0.1:7788 (configured in mkdocs.yml)
-mkdocs serve
+# Listens on http://127.0.0.1:7788 (configured in properdocs.yml)
+properdocs serve
+# Or with uv
+uv run properdocs serve
 ```
 
 ### Build
 ```bash
 # Build static site (generates site/ directory)
-mkdocs build
+properdocs build
+# Or with uv
+uv run properdocs build
 ```
 
 ## Documentation Structure
@@ -53,10 +57,10 @@ mkdocs build
     - `windows.md`, `macos.md`, `linux.md`, `other.md`
   - `assets/` - Images and static resources organized by guide/FAQ sections
 
-### MkDocs Configuration (`mkdocs.yml`)
+### ProperDocs Configuration (`properdocs.yml`)
 - **Site name**: Clash Verge Rev Docs
 - **Dev server**: Configured to listen on 127.0.0.1:7788
-- **Theme**: Material for MkDocs with custom configuration
+- **Theme**: MaterialX theme with custom configuration
   - Light/dark mode support
   - Navigation tabs and sections
   - Search with Chinese text segmentation (jieba)
@@ -67,11 +71,13 @@ mkdocs build
 
 ## Key Technical Details
 
-### MkDocs Material Features in Use
+### MaterialX Features in Use
 - **Markdown extensions**:
   - `admonition` - Warning/info boxes
   - `md_in_html` - Embedded HTML support
   - `pymdownx.details` - Collapsible sections
+  - `pymdownx.tilde` - Support for deleted text using tildes
+  - `pymdownx.magiclink` - Auto-links URLs
   - `pymdownx.highlight` - Code highlighting
   - `pymdownx.tabbed` - Tabbed content
   - `pymdownx.superfences` - Mermaid diagrams and code fences
@@ -97,13 +103,13 @@ Automated deployment via GitHub Actions (`.github/workflows/deploy.yml`):
 1. Triggers on push to `main` or `master` branch
 2. Sets up Python 3.x environment
 3. Installs dependencies from `requirements.txt`
-4. Runs `mkdocs build`
+4. Runs `properdocs build`
 5. Deploys to GitHub Pages
 
 ## VSCode Configuration
 
 The repository includes VSCode workspace settings (`.vscode/settings.json`):
-- YAML schema validation for `mkdocs.yml` against MkDocs Material schema
+- YAML schema validation for `properdocs.yml` against MkDocs Material schema
 - Custom YAML tags for Python name references
 - Prettier formatting configuration (double quotes, no trailing commas)
 
@@ -113,5 +119,5 @@ When editing documentation:
 - Maintain Chinese language throughout (this is Chinese-language documentation)
 - Follow existing image path conventions: `../assets/[section]/[subsection]/[filename]`
 - YAML code blocks for Clash/Mihomo configuration should use proper indentation
-- Navigation structure is defined in `mkdocs.yml` - update both when adding new pages
-- Use Material for MkDocs admonitions for warnings/tips/notes
+- Navigation structure is defined in `properdocs.yml` - update both when adding new pages
+- Use MaterialX admonitions for warnings/tips/notes

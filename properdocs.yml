@@ -43,7 +43,7 @@ nav:
 
 # 主题设置
 theme:
-  name: material
+  name: materialx
   logo: assets/logo.png
   favicon: assets/favicon.ico
   features:
@@ -104,6 +104,11 @@ markdown_extensions:
 plugins:
   - search:
       separator: '[\s\u200b\-]'
+  - document-dates:
+      position: top
+      type: timeago
+      locale: zh
+      show_author: false
 
 extra:
   generator: false # 去除页脚广告
